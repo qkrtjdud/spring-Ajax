@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.ajax.dto.TechResponse;
 import shop.mtcoding.ajax.model.Category;
@@ -47,8 +48,8 @@ public class TechController {
         return categoryRepository.findAll();
     }
 
-    @GetMapping("/api/tech/{categoryId}")
-    public @ResponseBody List<Tech> techApi(@PathVariable Integer categoryId) {
+    @GetMapping("/api/tech")
+    public @ResponseBody List<Tech> techApi(@RequestParam(defaultValue = "1") Integer categoryId) {
         return techRepository.findByCategoryId(categoryId);
     }
 
